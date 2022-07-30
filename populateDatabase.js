@@ -59,7 +59,7 @@ function getItem(id, callback) {
 
 function getItems(callback) {
   const functions = [];
-  for(let i = 1; i < 50; i++) {
+  for(let i = 50; i < 500; i++) {
     functions.push(getItem.bind(this, i));
   }
   async.parallel(functions, (err, results) => {

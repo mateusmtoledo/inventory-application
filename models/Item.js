@@ -12,8 +12,8 @@ const ItemSchema = new Schema({
   image: { type: String, required: true },
 });
 
-ItemSchema.virtual('url').get(() => {
-  return ('/inventory/item/' + this._id);
+ItemSchema.virtual('url').get(function() {
+  return ('/items/' + this._id);
 });
 
 module.exports = mongoose.model('Item', ItemSchema);
