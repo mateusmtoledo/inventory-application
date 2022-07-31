@@ -3,12 +3,15 @@ html
   head
     title Inventory App
     link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+
   body
-    header
-      h1 inventory app
-      nav
-        a(href="/") Home
-        a(href="/items") Items
-        a(href="/categories") Categories
-    main
-      block content
+    div.container
+      header
+        h1 inventory app
+        nav
+          a(href="/") Home
+          a(href="/items") Items
+          a(href="/categories") Categories
+      main
+        block content

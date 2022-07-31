@@ -1,8 +1,119 @@
+:root {
+  font-size: 16px;
+}
+
+*, *::after, *::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  background-image: url('https://64.media.tumblr.com/6681e0ff510900acbdc2897e0b7e7bd5/tumblr_o5wgu8zrUX1qk9nv0o3_500.png');
+  color: white;
 }
 
 a {
-  color: #00B7FF;
+  color: white;
+}
+
+p {
+  margin: 8px 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+header nav {
+  display: flex;
+  gap: 16px;
+}
+
+.container {
+  max-width: 800px;
+  flex: 1;
+  background-color: #1b0f1be3;
+  min-height: 100vh;
+  padding: 8px 32px;
+  margin: 0 8px;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.item-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.item-list img {
+  width: 24px;
+  height: 24px;
+}
+
+.item-list a {
+  color: black;
+  width: 100%;
+}
+
+tr {
+  border-bottom: 1px solid #dddddd;
+  cursor: pointer;
+}
+
+tr:hover {
+  background-color: white;
+  color: black;
+}
+
+tr:first-child {
+  cursor: auto;
+}
+
+tr:first-child:hover {
+  background: none;
+  color: inherit;
+}
+
+td, th {
+  padding: 8px;
+  text-align: center;
+}
+
+th:first-child {
+  text-align: start;
+}
+
+tr:last-child {
+  border: none;
+}
+
+.item-name {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  text-align: start;
+}
+
+.number-in-stock,
+.price {
+  width: max-content;
+  text-align: center;
 }

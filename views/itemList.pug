@@ -2,11 +2,15 @@ extends layout
 
 block content
   h2= title
-  div.item-list
+  table.item-list
+    tr
+      th Item
+      th In stock
+      th Price
     for item in items
-      div.item
-        a(href=item.url)
+      tr(onclick=`window.location="${item.url}";`)
+        td.item-name
           img(src=item.image, alt=item.name)
           p= item.name
-          p= item.price
-          p= item.numberInStock
+        td.number-in-stock(href=item.url)= item.numberInStock
+        td.price(href=item.url)= item.price
