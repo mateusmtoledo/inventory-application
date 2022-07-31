@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h2= category.name
+  ul
+    for item in items
+      li
+        a(href=item.url)
+          img(src=item.image, alt=item.name)
+          p= item.name
