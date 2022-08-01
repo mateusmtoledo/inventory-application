@@ -51,11 +51,6 @@ header nav {
   align-items: center;
   margin: 16px 0;
 }
-/* 
-.centered-item img {
-  height: 24px;
-  width: 24px;
-} */
 
 h2 {
   text-align: center;
@@ -125,4 +120,14 @@ tr:last-child {
 .price {
   width: max-content;
   text-align: center;
+}
+
+.create-category {
+  text-align: end;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.create-category:hover {
+  text-decoration: underline;
 }
