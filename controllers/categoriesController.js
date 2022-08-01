@@ -25,7 +25,7 @@ exports.categoryDetails = (req, res, next) => {
       })
     },
     items(callback) {
-      Item.find({ category: categoryId }, 'name image').limit(10).exec((err, items) => {
+      Item.find({ category: categoryId }).limit(10).exec((err, items) => {
         if(err) {
           callback(err,null);
           return;
