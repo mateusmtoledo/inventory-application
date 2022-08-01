@@ -2,15 +2,20 @@ extends layout
 
 block content
   h2= category.name
-  table.item-list
-    tr
-      th Item
-      th In stock
-      th Price
-    for item in items
-      tr(onclick=`window.location="${item.url}";`)
-        td.item-name
-          img(src=item.image, alt=item.name)
-          p= item.name
-        td.number-in-stock(href=item.url)= item.numberInStock
-        td.price(href=item.url)= item.price
+  if(category.description)
+    p= category.description
+  if(items.length)
+    table.item-list
+      tr
+        th Item
+        th In stock
+        th Price
+      for item in items
+        tr(onclick=`window.location="${item.url}";`)
+          td.item-name
+            img(src=item.image, alt=item.name)
+            p= item.name
+          td.number-in-stock(href=item.url)= item.numberInStock
+          td.price(href=item.url)= item.price
+  else
+    p No items found in this category
