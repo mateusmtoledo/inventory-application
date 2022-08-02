@@ -143,3 +143,10 @@ tr:last-child {
   align-items: center;
   justify-content: center;
 }
+.category-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 500px;
+  align-items: center;
+}

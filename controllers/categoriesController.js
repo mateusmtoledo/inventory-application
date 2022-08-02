@@ -4,7 +4,7 @@ const async = require('async');
 const { body, validationResult } = require('express-validator');
 
 exports.categoryList = (req, res, next) => {
-  Category.find({}).limit(10).exec((err, categories) => {
+  Category.find({}).sort('1').limit(60).exec((err, categories) => {
     if(err) {
       next(err);
       return;
