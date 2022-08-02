@@ -16,3 +16,9 @@ block content
           p= item.name
         td.number-in-stock(href=item.url)= item.numberInStock
         td.price(href=item.url)= item.price
+  div.page-controls
+    if(pageNumber > 1)
+      a(href='/items?page=' + (pageNumber - 1)) Prev
+    p= `(${pageNumber} of ${totalPages})`
+    if(pageNumber < totalPages)
+      a(href='/items?page=' + (pageNumber + 1)) Next

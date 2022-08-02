@@ -4,12 +4,28 @@ const async = require('async');
 const { body, validationResult } = require('express-validator');
 
 exports.itemList = (req, res, next) => {
-  Item.find({}).limit(10).exec((err, items) => {
+  const pageNumber = Number((req.query.page === undefined) || req.query.page);
+  if(!pageNumber || pageNumber < 1) {
+    res.redirect('/items');
+    return;
+  }
+  const itemsPerPage = 10;
+  async.parallel({
+    items(callback) {
+      Item.find({}).limit(itemsPerPage).skip((pageNumber - 1) * itemsPerPage).exec(callback);
+    },
+    itemCount(callback) {
+      Item.countDocuments({}, callback);
+    },
+  }, (err, results) => {
     if(err) {
       next(err);
       return;
     }
-    res.render('itemList', { title: 'Items', items })
+    const { items, itemCount } = results;
+    const totalPages = Math.ceil(itemCount / itemsPerPage);
+    if(pageNumber > totalPages) res.redirect(`/items?page=${totalPages}`);
+    else res.render('itemList', { title: 'Items', items, pageNumber, totalPages });
   });
 };
 

@@ -136,3 +136,10 @@ tr:last-child {
 .options a:hover {
   text-decoration: underline;
 }
+
+.page-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
