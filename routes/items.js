@@ -13,6 +13,10 @@ router.get('/:itemId/delete', itemController.deleteItemGet);
 
 router.post('/:itemId/delete', itemController.deleteItemPost);
 
+router.get('/:itemId/update', itemController.updateItemGet);
+
+router.post('/:itemId/update', itemController.updateItemPost);
+
 router.get('/:itemId', itemController.itemDetails);
 
 module.exports = router;
