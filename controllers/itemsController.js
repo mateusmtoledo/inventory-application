@@ -59,7 +59,30 @@ exports.newItemPost = [
         next(err);
         return;
       }
-      res.redirect('/items');
+      res.redirect(item.url);
     });
   },
 ];
+
+exports.deleteItemGet = (req, res, next) => {
+  const { itemId } = req.params;
+  Item.findById(itemId, (err, item) => {
+    if(err) {
+      next(err);
+      return;
+    }
+    if(!item) res.redirect('/items');
+    else res.render('itemDelete', { item });
+  });
+};
+
+exports.deleteItemPost = (req, res, next) => {
+  const { itemId } = req.params;
+  Item.findByIdAndDelete(itemId, (err) => {
+    if(err) {
+      next(err);
+      return;
+    }
+    else res.redirect('/items');
+  });
+};
