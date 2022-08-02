@@ -4,9 +4,9 @@
   "engines": { "node": "16.14.0" },
   "private": true,
   "scripts": {
-    "serverstart": "node ./bin/www",
+    "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
-    "start": "DEBUG=express-locallibrary-tutorial:* npm run devstart"
+    "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart"
   },
   "dependencies": {
     "async": "^3.2.4",
