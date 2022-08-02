@@ -72,7 +72,55 @@ exports.addCategoryPost = [
         next(err);
         return;
       };
-      res.redirect('/categories');
+      res.redirect(category.url);
     });
   },
 ];
+
+exports.deleteCategoryGet = (req, res, next) => {
+  const { categoryId } = req.params;
+  async.parallel({
+    category(callback) {
+      Category.findById(categoryId, callback);
+    },
+    items(callback) {
+      Item.find({ category: categoryId }, callback);
+    },
+  }, (err, results) => {
+    if(err) {
+      next(err);
+      return;
+    }
+    const { category, items } = results;
+    if(!category) res.redirect('/categories');
+    else res.render('categoryDelete', { category, items });
+  });
+};
+
+exports.deleteCategoryPost = (req, res, next) => {
+  const { categoryId } = req.params;
+  async.parallel({
+    category(callback) {
+      Category.findById(categoryId, callback);
+    },
+    items(callback) {
+      Item.find({ category: categoryId }, callback);
+    },
+  }, (err, results) => {
+    const { category, items } = results;
+    if(err) {
+      next(err);
+      return;
+    }
+    if(items.length) res.render('categoryDelete', { category, items });
+    else {
+      Category.findByIdAndDelete(categoryId, (err) => {
+        if(err) {
+          next(err);
+          return;
+        }
+        res.redirect('/categories');
+      });
+    }
+  });
+};

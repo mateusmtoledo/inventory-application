@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h2= `Delete Category: ${category.name}`
+  if items.length
+    p You must delete the following items before deleting this category:
+    ul
+      for item in items
+        li= item.name
+
+  else
+    p= `Are you sure you want to delete ${category.name}?`
+    form(method="post")
+      input(type="hidden" name="categoryId", value=category._id)
+      button Delete

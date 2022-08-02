@@ -2,6 +2,8 @@ extends layout
 
 block content
   h2= category.name
+  div.options
+    a(href=category.url + '/delete') Delete Category
   if(category.description)
     p= category.description
   if(items.length)
