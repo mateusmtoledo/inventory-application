@@ -77,6 +77,49 @@ exports.addCategoryPost = [
   },
 ];
 
+exports.updateCategoryGet = (req, res, next) => {
+  const { categoryId } = req.params;
+  Category.findById(categoryId, (err, category) => {
+    if(err) {
+      next(err);
+      return;
+    }
+    if(!category) res.redirect('/categories');
+    else res.render('categoryForm', { title: 'Update Category', category })
+  });
+};
+
+exports.updateCategoryPost = [
+  body('name')
+      .trim()
+      .escape()
+      .isLength({ min: 1 })
+      .withMessage('You must enter a category name')
+      .custom((value) => {
+        return Category.findOne({ name: value }).then((category) => {
+          if(category) return Promise.reject('Category already exists');
+        });
+      }),
+  body('description').trim().escape(),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+      res.render('categoryForm', { title: 'New Category', errors: errors.array()});
+      return;
+    }
+    const { categoryId } = req.params;
+    const updates = { name: req.body.name, description: req.body.description };
+    Category.findByIdAndUpdate(categoryId, updates, (err, category) => {
+      if(err) {
+        next(err);
+        return;
+      }
+      res.redirect(category.url);
+    });
+  },
+];
+
 exports.deleteCategoryGet = (req, res, next) => {
   const { categoryId } = req.params;
   async.parallel({
