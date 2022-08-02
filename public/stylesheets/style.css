@@ -122,12 +122,16 @@ tr:last-child {
   text-align: center;
 }
 
-.create-category {
-  text-align: end;
+.options {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.options a {
   text-decoration: none;
   font-weight: 700;
 }
 
-.create-category:hover {
+.options a:hover {
   text-decoration: underline;
 }

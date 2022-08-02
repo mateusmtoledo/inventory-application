@@ -2,8 +2,8 @@ extends layout
 
 block content
   h2= title
-  a.create-category(href='/categories/create')
-    p Create category
+  div.options
+    a(href='/categories/create') Create category
   for category in categories
     a(href=category.url)
       p.category= category.name
