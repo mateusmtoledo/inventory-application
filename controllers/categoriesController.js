@@ -49,7 +49,7 @@ exports.addCategoryGet = (req, res, next) => {
 };
 
 exports.addCategoryPost = [
-  body('category-name')
+  body('name')
       .trim()
       .escape()
       .isLength({ min: 1 })
@@ -59,16 +59,14 @@ exports.addCategoryPost = [
           if(category) return Promise.reject('Category already exists');
         });
       }),
-  body('category-description').trim().escape(),
+  body('description').trim().escape(),
   (req, res, next) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
       res.render('categoryForm', { title: 'New Category', errors: errors.array()});
       return;
     }
-    const categoryName = req.body['category-name'];
-    const categoryDescription = req.body['category-description'];
-    const category = new Category({ name: categoryName, description: categoryDescription });
+    const category = new Category(req.body);
     category.save((err) => {
       if(err) {
         next(err);
