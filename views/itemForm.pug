@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  form(method="post")
+    h2= title
+    ul
+      li
+        label(for="item-image") Image URL:
+        input(type="url", name="image", id="item-image" value=(item ? item.image : ''))
+      li
+        label(for="item-name") Name:
+        input(type="text", name="name", id="item-name" value=(item ? item.name : ''))
+      li
+        label(for="item-description") Description:
+        input(type="text", name="description", id="item-description" value=(item ? item.description : ''))
+      li
+        label(for="item-category") Category:
+        select(name="category", id="item-category")
+          for category in categories
+            option(value=category._id, selected=(item ? item.category.equals(category._id) : false))= category.name
+      li
+        label(for="item-price") Price:
+        input(type="number", name="price", id="item-price", step="0.01", value=(item ? item.price : ''))
+      li
+        label(for="item-number-in-stock") Number in stock:
+        input(type="number", name="numberInStock", id="item-number-in-stock" value=(item ? item.numberInStock : ''))
+    button Submit
+
+  if errors
+    ul
+      for error in errors
+        li= error.msg
